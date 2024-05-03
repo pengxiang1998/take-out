@@ -1,4 +1,4 @@
-package Optional;
+package Optionals;
 
 import java.util.ArrayList;
 import java.util.Objects;

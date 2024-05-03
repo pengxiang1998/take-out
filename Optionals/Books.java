@@ -1,4 +1,4 @@
-package Optional;
+package Optionals;
 
 public class Books {
     private String bookName;

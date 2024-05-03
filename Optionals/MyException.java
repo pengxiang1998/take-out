@@ -1,4 +1,4 @@
-package Optional;
+package Optionals;
 
 //继承 Exception 类-----自定义的异常类
 public class MyException extends Exception {
