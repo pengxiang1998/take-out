@@ -1,10 +1,39 @@
 package Optionals;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Optional1 {
     public static void main(String[] args)  {
+       map();
+
+    }
+
+    private static void map() {
+        Author auhtor=getAuthor();
+        Optional<Author> optionalAuthor = Optional.ofNullable(auhtor);
+        optionalAuthor
+                .map(author -> author.getBooks())
+                .ifPresent(books -> System.out.println(books));
+    }
+
+    private static void filter() {
+        Author auhtor=getAuthor();
+        Optional<Author> optionalAuthor = Optional.ofNullable(auhtor);
+        Optional<Author> author1 = optionalAuthor
+                .filter(author -> author.getAge() > 140);
+
+        optionalAuthor
+                .filter(author -> author.getAge()>140)
+                .ifPresent(author -> System.out.println(author));
+
+    }
+
+    public static void orElseGet(){
         Author auhtor=getAuthor();
         Optional<Author> optionalAuthor = Optional.ofNullable(auhtor);
         optionalAuthor.ifPresent(author -> System.out.println(author.getAge()));
@@ -21,14 +50,18 @@ public class Optional1 {
             throw new RuntimeException(e);
         }
         System.out.println(author);
-
+        System.out.println(1 / 4);
     }
     public static Author getAuthor(){
-        Author author=new Author("罗贯中",46);
+        ArrayList<Books> books=new ArrayList<>();
+        Books book=new Books("三国演义",199);
+        Collections.addAll(books,book);
+
+        Author author=new Author("罗贯中",46,books);
         return author;
     }
     public static Optional<Author> getOptionAuthor(){
         Author author=new Author("罗贯中",46);
-        return Optional.empty();
+        return Optional.ofNullable(author);
     }
 }
