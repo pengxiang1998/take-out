@@ -1,9 +1,8 @@
-package IPAddress;
+package IPAddress.UDP;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 
 public class Serve {
     public static void main(String[] args) throws IOException {
@@ -14,14 +13,18 @@ public class Serve {
         byte[] buffer = new byte[1024*64];
         //服务器接受的数据包
         DatagramPacket packet = new DatagramPacket(buffer,buffer.length);
-
+        while(true){
+            socket.receive(packet);
+            int length = packet.getLength();
+            String string = new String(packet.getData(), 0, length);
+            System.out.println(string);
+            System.out.println("--------------------------");
+        }
         //接收数据
-        socket.receive(packet);
-        int length = packet.getLength();
-        String string = new String(packet.getData(), 0, length);
-        System.out.println(string);
 
-        socket.close();
+
+
+        //socket.close();
 
     }
 }

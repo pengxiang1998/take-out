@@ -15,7 +15,9 @@ public class Clent {
 //            setPort(port);
 //        }
         byte[] bytes = "客户端消息:我是鹏翔".getBytes();
-        DatagramPacket packet = new DatagramPacket(bytes,bytes.length,InetAddress.getLocalHost(),8888);
+        //客户端发送的数据包，需要指明接收的服务端的IP地址以及端口
+        DatagramPacket packet =
+                new DatagramPacket(bytes,bytes.length,InetAddress.getLocalHost(),8888);
         //发送数据包
         socket.send(packet);
         System.out.println("客户端数据发送完毕");
